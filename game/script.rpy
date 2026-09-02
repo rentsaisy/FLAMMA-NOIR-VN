@@ -3,17 +3,17 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-define Katerine = Character('Katerine', color="#ffffff")
-define Sonya = Character('Sonya', color="#80b9c8")
-define Ivan = Character('Ivan', color="#247d7f")
-define Alexei = Character('Alexei', color="#b2d9c4")
-define Oscar = Character('Oscar', color="#900000")
+define Katerine = Character('Katerine', color="#ffffff")  #MC
+define Sonya = Character('Sonya', color="#80b9c8") #lead investigator
+define Ivan = Character('Ivan', color="#247d7f") # field investigator
+define Alexei = Character('Alexei', color="#b2d9c4") # technical investigator
+define Oscar = Character('Oscar', color="#900000") # the burner
 
 # The game starts here.
 
 label start:
     "The flames spread, consuming his house. The fire grows stronger, devouring everything in its path."
-    "This is our newest member."
+    # "This is our newest member."
     Sonya "This is our newest member."
     Katerine "Hello, everyone. I’m the new lawyer."
     Sonya "Alright. Let’s introduce ourselves. I’m the Lead Investigator, responsible for coordinating our investigations."
