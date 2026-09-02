@@ -12,6 +12,7 @@ define Oscar = Character('Oscar', color="#900000")
 # The game starts here.
 
 label dialogBB:
+    Sonya "Tes"
     return
 
 label dialogAB:
