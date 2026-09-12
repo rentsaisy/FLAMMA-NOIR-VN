@@ -292,7 +292,7 @@ screen navigation():
     vbox:
         style_prefix "navigation"
 
-        xpos gui.navigation_xpos
+        xalign 0.9
         yalign 0.5
 
         spacing gui.navigation_spacing
@@ -342,7 +342,7 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
-
+    xalign 0.5
 
 ## Main Menu screen ############################################################
 ##
@@ -356,7 +356,24 @@ screen main_menu():
     tag menu
 
     add gui.main_menu_background
-
+    add "statue_animation" at statue_position
+    
+    add "gui/overlay/frame.png":
+        xpos 800
+        ypos 100
+        zoom 0.3
+        at frame_fadein_vertical
+        
+    text "FLAMMA":
+        style "main_menu_title"
+        xalign 0.01
+        ypos 50
+    
+    text "NOIR":
+        style "main_menu_title"
+        xalign 0.01
+        ypos 110
+            
     ## This empty frame darkens the main menu.
     frame:
         style "main_menu_frame"
@@ -372,6 +389,7 @@ screen main_menu():
 
             text "[config.name!t]":
                 style "main_menu_title"
+                
 
             text "[config.version]":
                 style "main_menu_version"
@@ -387,12 +405,10 @@ style main_menu_frame:
     xsize 280
     yfill True
 
-    background "gui/overlay/main_menu.png"
-
 style main_menu_vbox:
     xalign 1.0
     xoffset -20
-    xmaximum 800
+    xmaximum 300
     yalign 1.0
     yoffset -20
 

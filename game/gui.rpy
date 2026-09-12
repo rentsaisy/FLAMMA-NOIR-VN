@@ -28,14 +28,14 @@ define config.check_conflicting_properties = True
 define gui.accent_color = '#cc0000'
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = '#888888'
+define gui.idle_color = '#ffffff'
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
 define gui.idle_small_color = '#aaaaaa'
 
 ## The color that is used for buttons and bars that are hovered.
-define gui.hover_color = '#e06666'
+define gui.hover_color = '#bbf6f9'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
@@ -57,13 +57,13 @@ define gui.interface_text_color = '#ffffff'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "DejaVuSans.ttf"
+define gui.text_font = "fonts/Pixelta.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "fonts/Pixelta.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "fonts/Pixelta.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 22
@@ -72,7 +72,7 @@ define gui.text_size = 22
 define gui.name_text_size = 30
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 22
+define gui.interface_text_size = 50
 
 ## The size of labels in the game's user interface.
 define gui.label_text_size = 24
@@ -81,15 +81,46 @@ define gui.label_text_size = 24
 define gui.notify_text_size = 16
 
 ## The size of the game's title.
-define gui.title_text_size = 50
+define gui.title_text_size = 70
 
+image background_animation:
+    "gui/BG_01.png"
+    pause 0.15
+    "gui/BG_02.png"
+    pause 0.15
+    "gui/BG_03.png"
+    pause 0.15
+    # "gui/BG_00.png"
+    # pause 0.15
+    repeat
+    
+image statue_animation:
+    "gui/ST_01.png"
+    pause 0.25
+    "gui/ST_02.png"
+    pause 0.25
+    "gui/ST_01.png"
+    pause 0.25
+    "gui/ST_03.png"
+    pause 0.25
+    repeat
+    
+transform statue_position:
+    xpos -50
+    ypos -50
+    zoom 0.4
 
+transform frame_fadein_vertical:
+    alpha 0.0
+    yoffset -100
+    ease 1.0 alpha 1.0 yoffset 0
+
+        
 ## Main and Game Menus #########################################################
 
 ## The images used for the main and game menus.
-define gui.main_menu_background = "gui/main_menu.png"
-define gui.game_menu_background = "gui/game_menu.png"
-
+define gui.main_menu_background = "background_animation"
+# define gui.game_menu_background = "gui/game_menu.png"
 
 ## Dialogue ####################################################################
 ##
