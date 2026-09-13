@@ -359,9 +359,9 @@ screen main_menu():
     add "statue_animation" at statue_position
     
     add "gui/overlay/frame.png":
-        xpos 800
-        ypos 100
-        zoom 0.3
+        xpos 760
+        ypos 50
+        zoom 0.32
         at frame_fadein_vertical
         
     text "FLAMMA":

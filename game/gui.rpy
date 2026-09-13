@@ -84,14 +84,14 @@ define gui.notify_text_size = 16
 define gui.title_text_size = 70
 
 image background_animation:
+    "gui/BG_00.png"
+    pause 0.15
     "gui/BG_01.png"
     pause 0.15
     "gui/BG_02.png"
     pause 0.15
     "gui/BG_03.png"
     pause 0.15
-    # "gui/BG_00.png"
-    # pause 0.15
     repeat
     
 image statue_animation:
