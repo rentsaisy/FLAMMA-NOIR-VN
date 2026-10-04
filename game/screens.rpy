@@ -1,4 +1,80 @@
-﻿################################################################################
+﻿#SCENE SELECTION
+transform gatescene_small:
+    zoom 0.5
+    
+screen scene_select():
+    add "gui/F_end.png"
+    vbox:
+        xpos 200
+        ypos 100
+        spacing 40
+        hbox:
+            spacing 150
+            
+            # SCENE 1
+            vbox:
+                spacing 5
+
+                text "SCENE 1":
+                    xalign 0.5
+                    size 35
+                    color "#000000"
+
+                imagebutton:
+                    idle "images/GateScene1.png"
+                    hover "images/GateScene1_hover.png"
+                    at gatescene_small
+                    action Start("scene_1")
+
+            # SCENE 2
+            vbox:
+                spacing 5
+
+                text "SCENE 2":
+                    xalign 0.5
+                    size 35
+                    color "#000000"
+
+                imagebutton:
+                    idle "images/GateScene1.png"
+                    hover "images/GateScene1_hover.png"
+                    at gatescene_small
+                    action Start("scene_2")
+        hbox:
+            spacing 150
+
+            # SCENE 3
+            vbox:
+                spacing 5
+
+                text "SCENE 3":
+                    xalign 0.5
+                    size 35
+                    color "#000000"
+
+                imagebutton:
+                    idle "images/GateScene1.png"
+                    hover "images/GateScene1_hover.png"
+                    at gatescene_small
+                    action Start("scene_3")
+
+            # SCENE 4
+            vbox:
+                spacing 5
+
+                text "SCENE 4":
+                    xalign 0.5
+                    size 35
+                    color "#000000"
+
+                imagebutton:
+                    idle "images/GateScene1.png"
+                    hover "images/GateScene1_hover.png"
+                    at gatescene_small
+                    action Start("scene_4")
+
+    textbutton _("Return") style "return_button" action ShowMenu("_main_menu_screen")
+################################################################################
 ## Initialization
 ################################################################################
 
@@ -292,16 +368,13 @@ screen navigation():
     vbox:
         style_prefix "navigation"
 
-        xalign 0.9
-        yalign 0.5
+        xalign 0.93
+        yalign 0.7
 
         spacing gui.navigation_spacing
+        textbutton _("Start") action ShowMenu("scene_select")
 
-        if main_menu:
-
-            textbutton _("Start") action Start()
-
-        else:
+        if not main_menu:
 
             textbutton _("History") action ShowMenu("history")
 
@@ -360,8 +433,8 @@ screen main_menu():
     
     add "gui/overlay/frame.png":
         xpos 760
-        ypos 50
-        zoom 0.32
+        ypos 20
+        zoom 0.34
         at frame_fadein_vertical
         
     text "FLAMMA":
@@ -1635,3 +1708,4 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 600
+
