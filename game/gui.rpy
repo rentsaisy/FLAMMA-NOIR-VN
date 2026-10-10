@@ -25,7 +25,7 @@ define config.check_conflicting_properties = True
 ## The colors of text in the interface.
 
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = '#cc0000'
+define gui.accent_color = '#bbf6f9'
 
 ## The color used for a text button when it is neither selected nor hovered.
 define gui.idle_color = '#ffffff'
@@ -46,8 +46,8 @@ define gui.insensitive_color = '#8888887f'
 
 ## Colors used for the portions of bars that are not filled in. These are not
 ## used directly, but are used when re-generating bar image files.
-define gui.muted_color = '#510000'
-define gui.hover_muted_color = '#7a0000'
+define gui.muted_color = '#6FA9AD'
+define gui.hover_muted_color = '#8FDDE1'
 
 ## The colors used for dialogue and menu choice text.
 define gui.text_color = '#ffffff'

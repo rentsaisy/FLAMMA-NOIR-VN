@@ -108,13 +108,14 @@ style button_text is gui_text:
     properties gui.text_properties("button")
     yalign 0.5
 
-
 style label_text is gui_text:
     properties gui.text_properties("label", accent=True)
 
 style prompt_text is gui_text:
     properties gui.text_properties("prompt")
-
+    
+# transform cyan_tint:
+#     matrixcolor TintMatrix("#bbf6f9")
 
 style bar:
     ysize gui.bar_size
@@ -133,7 +134,7 @@ style scrollbar:
 
 style vscrollbar:
     xsize gui.scrollbar_size
-    base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+    base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.bar_tile)
     thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
 
 style slider:
@@ -146,11 +147,9 @@ style vslider:
     base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
     thumb "gui/slider/vertical_[prefix_]thumb.png"
 
-
 style frame:
     padding gui.frame_borders.padding
     background Frame("gui/frame.png", gui.frame_borders, tile=gui.frame_tile)
-
 
 
 ################################################################################
@@ -329,7 +328,7 @@ screen quick_menu():
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            textbutton _("Sett") action ShowMenu('settings')
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -368,21 +367,19 @@ screen navigation():
     vbox:
         style_prefix "navigation"
 
-        xalign 0.93
+        xalign 0.9
         yalign 0.7
 
         spacing gui.navigation_spacing
-        textbutton _("Start") action ShowMenu("scene_select")
-
-        if not main_menu:
-
+        if main_menu:
+            textbutton _("Start") action ShowMenu("scene_select")
+        else:
             textbutton _("History") action ShowMenu("history")
-
             textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+        textbutton _("Tutorial") action Start("tutorial_battle")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Settings") action ShowMenu("settings")
 
         if _in_replay:
 
@@ -503,9 +500,87 @@ style main_menu_version:
 ## The scroll parameter can be None, or one of "viewport" or "vpgrid".
 ## This screen is intended to be used with one or more children, which are
 ## transcluded (placed) inside it.
+screen settings_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
+    tag menu
+
+    style_prefix "game_menu"
+
+    if main_menu:
+        add gui.main_menu_background
+    else:
+        add gui.game_menu_background
+
+    frame:
+        style "game_menu_outer_frame"
+
+        hbox:
+
+            ## Ruang kosong untuk menggantikan navigation.
+            frame:
+                style "game_menu_navigation_frame"
+
+            ## Isi Settings
+            frame:
+                style "game_menu_content_frame"
+
+                if scroll == "viewport":
+
+                    viewport:
+                        yinitial yinitial
+                        scrollbars "vertical"
+                        mousewheel True
+                        draggable True
+                        pagekeys True
+
+                        side_yfill True
+
+                        vbox:
+                            spacing spacing
+
+                            transclude
+
+                elif scroll == "vpgrid":
+
+                    vpgrid:
+                        cols 1
+                        yinitial yinitial
+
+                        scrollbars "vertical"
+                        mousewheel True
+                        draggable True
+                        pagekeys True
+
+                        side_yfill True
+
+                        spacing spacing
+
+                        transclude
+
+                else:
+
+                    transclude
+
+    textbutton _("Return"):
+        style "return_button"
+        action Return()
+
+    label title   
+     
 screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
+    tag menu
+
+    add gui.main_menu_background
+
+    frame:
+        style "game_menu_outer_frame"
+
+        frame:
+            style "game_menu_content_frame"
+
+            transclude
+            
     style_prefix "game_menu"
 
     if main_menu:
@@ -641,7 +716,7 @@ screen about():
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    use game_menu(_("About"), scroll="viewport"):
+    use settings_menu(_("About"), scroll="viewport"):
 
         style_prefix "about"
 
@@ -819,14 +894,14 @@ style slot_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
-screen preferences():
+screen settings():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
-
+    use settings_menu(_("Settings"), scroll="viewport"):
+        
         vbox:
-
+            
             hbox:
                 box_wrap True
 
@@ -1072,8 +1147,8 @@ screen help():
     tag menu
 
     default device = "keyboard"
-
-    use game_menu(_("Help"), scroll="viewport"):
+    
+    use settings_menu(_("Help"), scroll="viewport"):
 
         style_prefix "help"
 

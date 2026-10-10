@@ -18,6 +18,343 @@
 #     $ persistent.scene2_completed = True
 
 #     return
+default battle_result = None
+default battle_try_again = False
+default battle_previous_choice = None
+default battle_show_result_popup = False
+
+transform win_cover_animation:
+    yoffset -720
+    ease 0.8 yoffset 0
+
+transform lose_cover_animation:
+    yoffset 720
+    ease 0.8 yoffset 0
+    
+init python:
+
+    def battle_choose(argument_type):
+
+        # Do not accept choices after the battle ends.
+        if store.battle_result is not None:
+            return
+
+        enemy_type = store.battle_enemy_arguments[
+            store.battle_phase
+        ]["type"]
+
+        counters = {
+            "Forensics": "Integrity",
+            "Integrity": "Intelligence",
+            "Intelligence": "Forensics"
+        }
+
+        # Same argument type: ask the player to try again.
+        if argument_type == enemy_type:
+            store.battle_try_again = True
+            renpy.show_screen("battle_try_again_screen")
+            renpy.restart_interaction()
+            return
+
+        store.battle_try_again = False
+
+        # Player wins this exchange.
+        if counters.get(argument_type) == enemy_type:
+            store.battle_enemy_hp -= 50
+
+            if store.battle_enemy_hp <= 0:
+                store.battle_enemy_hp = 0
+                store.battle_result = "win"
+                store.battle_show_result_popup = False
+                renpy.show_screen("battle_result_screen")
+                renpy.restart_interaction()
+                return
+
+        # Player loses this exchange.
+        elif counters.get(enemy_type) == argument_type:
+            store.battle_mc_lives -= 1
+
+            if store.battle_mc_lives <= 0:
+                store.battle_mc_lives = 0
+                store.battle_result = "lose"
+                store.battle_show_result_popup = False
+                renpy.show_screen("battle_result_screen")
+                renpy.restart_interaction()
+                return
+
+        renpy.restart_interaction()
+
+screen battle_result_screen():
+
+    modal True
+    zorder 200
+
+    if battle_result == "win":
+
+        add Solid("#000000") at win_cover_animation
+
+    elif battle_result == "lose":
+
+        add Solid("#000000") at lose_cover_animation
+
+    # Show the result popup after the cover animation.
+    if not battle_show_result_popup:
+        timer 0.9 action SetVariable(
+            "battle_show_result_popup", True
+        )
+    if battle_show_result_popup:
+
+        frame:
+            add "gui/overlay/confirm.png"
+            xalign 0.5
+            yalign 0.5
+            xsize 500
+            ysize 300
+            vbox:
+                xalign 0.5
+                yalign 0.5
+                spacing 30
+
+                if battle_result == "win":
+                    text "YOU WIN":
+                        size 48
+                        color "#FFFDFD"
+                        xalign 0.5
+
+                    text "You defeated your opponent.":
+                        color "#FFFFFF"
+                        xalign 0.5
+
+                else:
+                    text "YOU LOSE":
+                        size 48
+                        color "#360618"
+                        xalign 0.5
+
+                    text "You have run out of lives.":
+                        color "#FFFFFF"
+                        xalign 0.5
+
+                textbutton "Continue":
+                    xalign 0.5
+                    action Return(battle_result)
+                    
+screen battle_try_again_screen():
+
+    modal True
+    zorder 300
+
+    # Transparent dark overlay.
+    add Solid("#00000066")
+
+    # Character.
+    add "fox":
+        xalign 1.0
+        yalign 1.0
+        zoom 0.256
+
+    # Dialogue bubble.
+    frame:
+        add "gui/overlay/confirm.png"
+        xalign 0.5
+        yalign 0.82
+        xsize 300
+        ysize 120
+
+        vbox:
+            xalign 0.5
+            yalign 0.5
+            spacing 12
+
+            text "Try again!":
+                size 30
+                color "#FFF7F7"
+                xalign 0.5
+
+            textbutton "OK":
+                xalign 0.5
+                action Hide("battle_try_again_screen")
+                
+default battle_phase = 0
+
+screen battle_screen():
+
+    add battle_background
+
+
+    # =========================================
+    # ENEMY
+    # =========================================
+
+    add battle_enemy_image:
+        xpos 850
+        ypos 280
+        xanchor 0.5
+        yanchor 0.5
+        zoom 0.236
+
+
+    # =========================================
+    # ENEMY ARGUMENT BUBBLE
+    # =========================================
+
+    frame:
+        xpos 300
+        ypos 140
+        xsize 500
+        ysize 150
+
+        background battle_enemy_bubble
+
+        text battle_enemy_arguments[battle_phase]["text"]:
+            xalign 0.1
+            yalign 0.5
+            xmaximum 430
+            text_align 0.5
+            size 25
+            color "#ffffff"
+
+
+    # =========================================
+    # ENEMY HP
+    # =========================================
+
+    bar:
+        xpos 0
+        ypos 470
+        xsize 1280
+        ysize 38
+
+        value battle_enemy_hp
+        range battle_enemy_max_hp
+
+        left_bar Solid("#000000")
+        right_bar Solid("#F3EEEE")
+
+
+    # =========================================
+    # MC LIVES
+    # =========================================
+
+    if battle_mc_lives >= 1:
+        text "♥":
+            xpos 1080
+            ypos 30
+            size 40
+            color "#ff4d6d"
+
+    if battle_mc_lives >= 2:
+        text "♥":
+            xpos 1140
+            ypos 30
+            size 40
+            color "#ff4d6d"
+
+    if battle_mc_lives >= 3:
+        text "♥":
+            xpos 1200
+            ypos 30
+            size 40
+            color "#ff4d6d"
+
+
+    # =========================================
+    # PLAYER ARGUMENTS
+    # =========================================
+    # PLAYER ARGUMENTS BACKGROUND FRAME
+    fixed:
+        xpos 120
+        ypos 550
+        xsize 1160
+        ysize 130
+
+        # One black transparent frame for all 3 bubbles.
+        frame:
+            xpos -120
+            ypos -45
+            xsize 1280
+            ysize 400
+            background "#000000B8"
+    for i, argument in enumerate(battle_player_arguments):
+
+        textbutton argument["text"]:
+
+            xpos 80 + (i * 390)
+            ypos 560
+
+            xsize 350
+            ysize 110
+
+            background battle_player_bubble[i]
+            hover_background battle_player_bubble_hover[i]
+            text_xalign 0.5
+            text_yalign 0.5
+
+            text_xmaximum 300
+            text_size 16
+            text_color "#ffffff"
+
+            action Function(
+                battle_choose,
+                argument["type"]
+            )
+            
+label battle(
+    enemy_name,
+    enemy_image,
+    enemy_arguments,
+    player_arguments,
+    background,
+    enemy_bubble,
+    player_bubbles,
+    player_bubbles_hover,
+    enemy_hp,
+    phase,
+    mc_lives,
+    enemy_max_hp
+):
+
+    $ battle_enemy_name = enemy_name
+    $ battle_enemy_image = enemy_image
+    $ battle_enemy_arguments = enemy_arguments
+    $ battle_player_arguments = player_arguments
+    $ battle_background = background
+    $ battle_enemy_bubble = enemy_bubble
+    $ battle_player_bubble = player_bubbles
+    $ battle_player_bubble_hover = player_bubbles_hover
+
+    # Save the initial battle settings.
+    $ battle_initial_hp = enemy_hp
+    $ battle_initial_phase = phase
+    $ battle_initial_lives = mc_lives
+    $ battle_enemy_max_hp = enemy_max_hp
+
+    # Repeat battle until the player wins.
+    while True:
+
+        $ battle_enemy_hp = battle_initial_hp
+        $ battle_phase = battle_initial_phase
+        $ battle_mc_lives = battle_initial_lives
+
+        $ battle_result = None
+        $ battle_try_again = False
+        $ battle_show_result_popup = False
+
+        call screen battle_screen
+
+        # Show the result screen when the battle ends.
+        if battle_result == "win" or battle_result == "lose":
+
+            call screen battle_result_screen
+            $ result = _return
+
+            if result == "win":
+                return "win"
+
+            elif result == "lose":
+                # Restart the battle with initial HP and lives.
+                pass
+                
 transform shake:
     xoffset 0
     linear 0.05 xoffset -10
@@ -27,6 +364,125 @@ transform shake:
     linear 0.05 xoffset -5
     linear 0.05 xoffset 0
 
+
+# SCENE BATTLE TUTORIAL
+define Fox = Character('Little Fox', color="#ec7599")  #PINK
+image fox = "images/C_Fox.png"
+image foren = "images/EForensic.png"
+image intel = "images/EIntelligence.png"
+image integ = "images/EIntegrity.png"
+
+transform move_forensics:
+    xpos 300
+    ypos 300
+    xanchor 0.5
+    yanchor 0.5
+    zoom 0.1
+
+    pause 1.5
+    linear 1.0 xpos 640 ypos 150
+
+
+transform move_intelligence:
+    xpos 640
+    ypos 300
+    xanchor 0.5
+    yanchor 0.5
+    zoom 0.1
+
+    pause 1.5
+    linear 1.0 xpos 420 ypos 400
+
+
+transform move_integrity:
+    xpos 980
+    ypos 300
+    xanchor 0.5
+    yanchor 0.5
+    zoom 0.1
+
+    pause 1.5
+    linear 1.0 xpos 860 ypos 400
+ 
+label tutorial_battle:
+    scene black
+    show fox:
+        xalign 0.5
+        yalign 0.1
+        zoom 0.256
+    Fox "Welcome to the Battle Tutorial."
+    Fox "Let me introduce you to our argument types."
+    hide fox 
+    show foren at move_forensics
+    Fox "Forensic"
+    show intel at move_intelligence
+    Fox "Intelligence"
+    show integ at move_integrity
+    Fox "Integrity"
+    Fox "Forensics is strong against Integrity, Integrity is strong against Intelligence, And Intelligence is strong against Forensics."
+    show fox:
+        xalign 0.5
+        yalign 0.1
+        zoom 0.256
+    Fox "In this battle, you will use arguments to defeat your opponent."
+    Fox "Each argument has a type and can counter another type like in the explaination before."
+    Fox "Let's begin."
+    hide fox
+    hide foren
+    hide intel
+    hide integ
+    with dissolve
+
+    $ result = renpy.call("battle",
+        enemy_name="Enemy",
+        enemy_image="images/enemy.png",
+        enemy_hp=50,
+        enemy_max_hp=50,
+        phase=0,
+        mc_lives=3,
+        enemy_arguments=[
+            {
+                "text": "Kebakaran ini bukan urusanmu.",
+                "type": "Integrity"
+            }
+        ],
+        player_arguments=[
+            {
+                "text": "Bukti di lokasi kejadian menunjukkan sebaliknya.",
+                "type": "Forensics"
+            },
+            {
+                "text": "Tindakanmu telah menghancurkan kehidupan\nbanyak orang.",
+                "type": "Integrity"
+            },
+            {
+                "text": "Aku sudah mengetahui rencanamu sejak awal.",
+                "type": "Intelligence"
+            }
+        ],
+        background="images/bgbattle.png",
+        enemy_bubble="images/Ben_integ.png",
+        player_bubbles=[
+            "images/B_foren.png",
+            "images/B_integ.png",
+            "images/B_intel.png"
+        ],
+        player_bubbles_hover=[
+            "images/Bhov_foren.png",
+            "images/Bhov_integ.png",
+            "images/Bhov_intel.png"
+        ]
+    )
+
+    if _return == "win":
+        show fox:
+            xalign 0.5
+            yalign 0.1
+            zoom 0.256
+
+        Fox "Tutorial complete."
+
+    return
 # SCENE 1
 # The script of the game goes in this file.
 
