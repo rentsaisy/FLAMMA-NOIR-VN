@@ -311,7 +311,7 @@ style choice_button_text is default:
 ## menus.
 
 screen quick_menu():
-
+    pass
     ## Ensure this appears on top of other screens.
     zorder 100
 
@@ -336,7 +336,7 @@ screen quick_menu():
 init python:
     config.overlay_screens.append("quick_menu")
 
-default quick_menu = True
+default quick_menu = False
 
 style quick_menu is hbox
 style quick_button is default
@@ -729,8 +729,7 @@ screen about():
             if gui.about:
                 text "[gui.about!t]\n"
 
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
-
+            text _("This game was made with {a=https://www.renpy.org/}Ren`Py{/a} [renpy.version_only] for game programming course project at Universitas Negeri Surabaya by Group 3 International Class. \n\nOfficial Game Website: \n {a=https://rentsaisy.github.io/FLAMMA-NOIR-website-game-promotion/} https://flammanoir.com{/a}")
 
 style about_label is gui_label
 style about_label_text is gui_label_text

@@ -1,9 +1,12 @@
+# image investigation_room_tutor:
+#     "images/TGF/tgidle.png"
+#     pause 0.5
+#     "images/TGF/tgidle1.png"
+#     pause 0.5
+#     repeat   
+
 image investigation_room_tutor:
-    "images/TGF/tgidle.png"
-    pause 0.5
-    "images/TGF/tgidle1.png"
-    pause 0.5
-    repeat
+    "images/ENEM/idle.png"
     
 # Idle animation
 image player_idle:
@@ -51,30 +54,55 @@ image player_walk_right:
     repeat
 
 # Sitting while thinking
-image fight_tg:
-    "images/TGF/tgfight.png"
+# image fight_tg:
+#     "images/TGF/tgfight.png"
+#     pause 0.7
+#     "images/TGF/tgfight1.png"
+#     pause 0.7
+#     "images/TGF/tgfight2.png"
+#     pause 0.7
+#     repeat
+
+image fight_enem:
+    "images/ENEM/fight.png"
     pause 0.7
-    "images/TGF/tgfight1.png"
+    "images/ENEM/fight1.png"
     pause 0.7
-    "images/TGF/tgfight2.png"
+    "images/ENEM/fight2.png"
     pause 0.7
     repeat
         
 # tg lose
-image lose_tg:
-    "images/TGF/tglose.png"
+# image lose_tg:
+#     "images/TGF/tglose.png"
+#     pause 0.7
+#     "images/TGF/tglose1.png"
+#     pause 0.7
+#     repeat
+    
+image lose_enem:
+    "images/ENEM/lose.png"
     pause 0.7
-    "images/TGF/tglose1.png"
+    "images/ENEM/lose1.png"
     pause 0.7
     repeat
     
 # tg win
-image win_tg:
-    "images/TGF/tgwin.png"
+# image win_tg:
+#     "images/TGF/tgwin.png"
+#     pause 0.7
+#     "images/TGF/tgwin1.png"
+#     pause 0.7
+#     "images/TGF/tgwin2.png"
+#     pause 0.7
+#     repeat
+    
+image win_enem:
+    "images/ENEM/win.png"
     pause 0.7
-    "images/TGF/tgwin1.png"
+    "images/ENEM/win1.png"
     pause 0.7
-    "images/TGF/tgwin2.png"
+    "images/ENEM/win2.png"
     pause 0.7
     repeat
     
@@ -256,19 +284,19 @@ screen exploration_room_tutorial():
     if player_sitting:
 
         if combat_state in ("playing", "retry"):
-            add "fight_tg":
+            add "fight_enem":
                 xalign 0.78
                 yalign 0.60
 
         elif combat_state == "win_anim":
-            add "lose_tg":
+            add "lose_enem":
                 xalign 0.78
                 yalign 0.60
 
             timer 2.1 action Function(finish_win_animation)
 
         elif combat_state == "lose_anim":
-            add "win_tg":
+            add "win_enem":
                 xalign 0.78
                 yalign 0.60
 
@@ -350,7 +378,7 @@ screen exploration_room_tutorial():
     # ===== FOX RETRY MESSAGE =====
     if player_sitting and combat_state == "retry":
 
-        add "images/C_Fox.png":
+        add "images/chara/C_Fox.png":
             xalign 0.9
             yalign 1.0
             zoom 0.2
@@ -523,7 +551,7 @@ screen exploration_room_tutorial():
 
 # SCENE BATTLE TUTORIAL
 define Fox = Character('Little Fox', color="#ec7599")  #PINK
-image fox = "images/C_Fox.png"
+image fox = "images/chara/C_Fox.png"
 image foren = "images/EForensic.png"
 image intel = "images/EIntelligence.png"
 image integ = "images/EIntegrity.png"
