@@ -2,12 +2,12 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-define Katerine = Character('Katerine', color="#ffffff")  #MC
-define Sonya = Character('Sonya', color="#80b9c8") #lead investigator
-define Ivan = Character('Ivan', color="#247d7f") # field investigator
-define Alexei = Character('Alexei', color="#b2d9c4") # technical investigator
-define Oscar = Character('Oscar', color="#900000") # the briber
-
+# define Katerine = Character('Katerine', color="#ffffff")  #MC
+# define Sonya = Character('Sonya', color="#80b9c8") #lead investigator
+# define Ivan = Character('Ivan', color="#247d7f") # field investigator
+# define Alexei = Character('Alexei', color="#b2d9c4") # technical investigator
+# define Albert = Character('Albert', color="#900000") # the briber
+# define Fox = Character('Little Fox', color="#ec7599")  #PINK
 # Scenes pic
 image sonya = "images/chara/C_Lead_Investigator.png"
 image m_sonya = "images/chara/C_Lead_Investigator_Mute.png"
