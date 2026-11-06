@@ -550,7 +550,7 @@ screen exploration_room_tutorial():
     key "K_ESCAPE" action Return()
 
 # SCENE BATTLE TUTORIAL
-define Fox = Character('Little Fox', color="#ec7599")  #PINK
+# define Fox = Character('Little Fox', color="#ec7599")  #PINK
 image fox = "images/chara/C_Fox.png"
 image foren = "images/EForensic.png"
 image intel = "images/EIntelligence.png"
