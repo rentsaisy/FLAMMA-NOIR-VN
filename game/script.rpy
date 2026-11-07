@@ -41,6 +41,7 @@ define Ivan = Character('Ivan', color="#247d7f", callback=template_voice, cb_voi
 define Alexei = Character('Alexei', color="#b2d9c4", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") # technical investigator
 define Oscar = Character('Oscar', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") # the burner
 define Albert = Character('Albert', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") #the briber
+define Franz = Character('Franz', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") #the ghost
 define Fox = Character('Little Fox', color="#ec7599", callback=template_voice, cb_voicefile="audio/voice/fox/pinkvoice.wav") #pink
 
 label tutorial_battle:
