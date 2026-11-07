@@ -904,11 +904,12 @@ label firstscene:
     
 label investigation_room:
     
+    play music "audio/bgm/home-battle.wav" fadein 1.0
     call screen exploration_room
-    
     return
 
 label after_battle1:
+    stop music fadeout 1.0
     scene AF
     show oscar:
         xalign 1.0

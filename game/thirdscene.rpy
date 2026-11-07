@@ -820,6 +820,7 @@ label thirdscene:
         xalign 0.5
         yalign 0.1
         zoom 0.256
+    $ custom_voice = "audio/voice/fox/pinkvoice_sad.wav"
     Fox "Waa" #sad
     hide fox
     show alexei:
@@ -951,12 +952,13 @@ label thirdscene:
     jump investigation_room3
     
 label investigation_room3:
-    
+    play music "audio/bgm/home-battle.wav" fadein 1.0
     call screen exploration_room3
     
     return
 
 label after_battle3:
+    stop music fadeout 1.0
     scene BGB
     show franz:
         xalign 0.5
