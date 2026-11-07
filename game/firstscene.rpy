@@ -2,11 +2,6 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-define Katerine = Character('Katerine', color="#ffffff")  #MC
-define Sonya = Character('Sonya', color="#80b9c8") #lead investigator
-define Ivan = Character('Ivan', color="#247d7f") # field investigator
-define Alexei = Character('Alexei', color="#b2d9c4") # technical investigator
-define Oscar = Character('Oscar', color="#900000") # the burner
 
 # Scenes pic
 image sonya = "images/chara/C_Lead_Investigator.png"
@@ -678,7 +673,6 @@ label firstscene:
         xalign 0.5
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/sonya/short.wav"
     Sonya "This is our new member."
     hide sonya
     show m_sonya:
@@ -689,7 +683,6 @@ label firstscene:
         xalign 0.8
         yalign 0.1
         zoom 0.256
-    voice "<to 1.5>audio/voice/katerine/medium.wav"
     Katerine "Hello everyone. My name is Katerine, I am the new attorney in here."
     hide katerine
     hide m_sonya
@@ -698,23 +691,19 @@ label firstscene:
         xalign 0.5
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/sonya/short.wav"
     Sonya "WELCOME TO NOIR KATERINE!"
-    voice "audio/voice/sonya/medium.wav"
     Sonya "Let`s introduce ourselves. First, I am the Lead Investigator, responsible for coordinating our investigations."
     hide sonya
     show ivan:
         xalign 0.5
         yalign 0.3
         zoom 0.232
-    voice "<to 2.0>audio/voice/ivan/medium.wav"
     Ivan "I am the Field Investigator. I handle investigations and evidence directly at the crime scene."
     hide ivan
     show alexei:
         xalign 0.5
         yalign 0.3
         zoom 0.232
-    voice "<to 2.2>audio/voice/alexei/medium.wav"
     Alexei "I am the Technical Investigator. I analyze technical evidence and help uncover hidden information."
     hide alexei
     scene black
@@ -724,14 +713,12 @@ label firstscene:
         xalign 0.5
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/sonya/short.wav"
     Sonya "Looks like this is your first case."
     hide sonya
     show katerine:
         xalign 0.5
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/katerine/short.wav"
     Katerine "Forest arson?"
     hide katerine
     show m_katerine:
@@ -742,9 +729,7 @@ label firstscene:
         xalign 0.1
         yalign 0.1
         zoom 0.256
-    voice "<to 1.4>audio/voice/sonya/medium.wav"
     Sonya "YUP! Isn`t it exciting you? I MEAN IT IS YOUR FIRST CASE!"
-    voice "<to 1.5>audio/voice/sonya/medium.wav"
     Sonya "Find the real culprit at the crime scene. You will be going with Ivan."
     hide sonya
     show m_sonya:
@@ -755,7 +740,6 @@ label firstscene:
         xalign 0.9
         yalign 0.3
         zoom 0.232
-    voice "audio/voice/ivan/short.wav"
     Ivan "Huh, Me?"
     hide ivan
     show m_ivan:
@@ -766,7 +750,6 @@ label firstscene:
         xalign 0.1
         yalign 0.1
         zoom 0.256
-    voice "<to 1.2>audio/voice/sonya/medium.wav"
     Sonya "Yup, Tell me what you guys find after that. Good luck for both of you."
     hide katerine
     hide sonya
@@ -780,21 +763,17 @@ label firstscene:
         xalign 0.1
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/katerine/short.wav"
     Katerine "This forest is huge..."
     hide katerine
     scene S1_7
     "Katerine notices something lying among the ashes."
-    voice "audio/voice/katerine/short.wav"
     Katerine "A burned fox..."
     scene AF
     show katerine:
         xalign 0.1
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/katerine/short.wav"
     Katerine "WAIT ISN`T IT BLUSHFEN?"
-    voice "audio/voice/katerine/long.wav"
     Katerine "This is a protected species! Someone must have burned its habitat to drive up the animal`s market value. We need to find the other Blushfens. They might still be alive, and we could save them from the hands of those cruel people!"
     hide katerine
     show m_katerine:
@@ -805,7 +784,6 @@ label firstscene:
         xalign 0.8
         yalign 0.3
         zoom 0.232
-    voice "<to 1.0>audio/voice/ivan/medium.wav"
     Ivan "Do not jump to conclusions. Look around first!"
     hide m_katerine
     hide ivan
@@ -817,15 +795,13 @@ label firstscene:
         xalign 0.1
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/katerine/short.wav"
     Katerine "What`s that?!"
     hide katerine
     show oscar:
         xalign 1.0
         yalign 0.3
         zoom 0.232
-    voice "<to 0.6>audio/voice/oscar/medium.wav"
-    Oscar "Ouch! COME HERE YOU LITTLE FOX!."
+    Oscar "Ouch! COME HERE YOU LITTLE FOX!"
     hide oscar
     #EVI 1 =====================================
     scene black
@@ -841,7 +817,6 @@ label firstscene:
             xalign 0.1
             yalign 0.1
             zoom 0.256
-    voice "<to 0.7>audio/voice/katerine/medium.wav"
     Katerine "GET BACK! Why are you chasing her?"
     hide katerine
     show m_katerine:
@@ -852,7 +827,6 @@ label firstscene:
         xalign 1.0
         yalign 0.3
         zoom 0.232
-    voice "<to 0.9>audio/voice/oscar/medium.wav"
     Oscar "That`s none of your business. GIVE HER TO ME!"
     hide oscar
     show m_oscar:
@@ -863,7 +837,6 @@ label firstscene:
         xalign 0.4
         yalign 0.3
         zoom 0.232
-    voice "<to 1.5>audio/voice/ivan/medium.wav"
     Ivan "It`s our business, We are from NOIR and our job is doing investigation in here."
     hide ivan
     #EVI 2 =====================================
@@ -872,7 +845,6 @@ label firstscene:
         xalign 0.5
         yalign 0.5
         zoom 1.0
-    voice "<to 1.5>audio/voice/ivan/medium.wav"
     Ivan "Who are you? also why you smell like gasoline and your sleeve cuffs look wet?"
     hide e2
     scene AF
@@ -886,7 +858,6 @@ label firstscene:
         xalign 0.1
         yalign 0.1
         zoom 0.256
-    voice "<to 1.0>audio/voice/katerine/medium.wav"
     Katerine "Oscar, are you the mastermind of this forest arson?"
     hide katerine
     show m_katerine:
@@ -898,7 +869,6 @@ label firstscene:
         xalign 1.0
         yalign 0.3
         zoom 0.232
-    voice "<to 0.7>audio/voice/oscar/medium.wav"
     Oscar "WHAT? HOW DO YOU KNOW MY NAME?"
     hide oscar
     show m_oscar:
@@ -912,7 +882,6 @@ label firstscene:
         xalign 0.5
         yalign 0.5
         zoom 1.0
-    voice "<to 1.6>audio/voice/katerine/medium.wav"
     Katerine "You dropped this necklace. Now answer my question, are you the-"            
     hide e3
     scene AF
@@ -926,7 +895,6 @@ label firstscene:
         xalign 1.0
         yalign 0.3
         zoom 0.232
-    voice "audio/voice/oscar/short.wav"
     Oscar "GIVE IT BACK TO ME!"
     hide oscar
     hide m_ivan
@@ -934,7 +902,6 @@ label firstscene:
         xalign 0.4
         yalign 0.3
         zoom 0.232
-    voice "audio/voice/ivan/medium.wav"
     Ivan "Do not touch my partner! You can get that necklace if you follow us. Katerine, begin the investigation!"
     jump investigation_room
     
@@ -950,11 +917,9 @@ label after_battle1:
         xalign 1.0
         yalign 0.3
         zoom 0.232
-    voice "<to 0.8>audio/voice/oscar/medium.wav"
     Oscar "ALRIGHT! you`re correct I am the burner."
     hide oscar
     scene S1_8
-    voice "<to 1.7>audio/voice/oscar/medium.wav"
     Oscar "But I do it for my sister, she is sick and I need money so I take this job."
     scene AF
     show m_oscar:
@@ -965,7 +930,6 @@ label after_battle1:
         xalign 0.1
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/katerine/medium.wav"
     Katerine "So the animals in here feels like that too, they`re afraid losing their family. Then Oscar, who is your boss?"
     hide katerine
     hide m_oscar
@@ -979,7 +943,6 @@ label after_battle1:
         xalign 0.5
         yalign 0.5
         zoom 1.0
-    voice "<to 0.7>audio/voice/oscar/medium.wav"
     Oscar "I can`t say that, I will just give you this"
     hide e3
     scene AF
@@ -987,7 +950,6 @@ label after_battle1:
         xalign 0.4
         yalign 0.3
         zoom 0.232
-    voice "<to 2.5>audio/voice/ivan/medium.wav"
     Ivan "Fine, let`s take this guy to the police and we continue our investigation to search the mastermind."    
     hide m_katerine
     hide ivan
@@ -1000,11 +962,10 @@ label after_battle1:
         xalign 0.1
         yalign 0.1
         zoom 0.256
-    voice "audio/voice/katerine/short.wav"
     Katerine "A Lighter? huh? this symbol.."
     hide m_ivan
     hide katerine
     with dissolve
     scene black
-    "They're going back to NOIR office"
+    "They`re going back to NOIR office"
     return
