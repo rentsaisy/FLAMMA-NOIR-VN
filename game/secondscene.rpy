@@ -685,6 +685,7 @@ label secondscene:
         xalign 0.5
         yalign 0.1
         zoom 0.256
+    $ custom_voice = "audio/voice/fox/pinkvoice_confused.wav"
     Fox "Mrrp?"
     hide fox
     show m_fox:
@@ -861,12 +862,13 @@ label secondscene:
     jump investigation_room2
     
 label investigation_room2:
-    
+    play music "audio/bgm/home-battle.wav" fadein 1.0
     call screen exploration_room2
     
     return
 
 label after_battle2:
+    stop music fadeout 1.0
     scene S2_2
     "The Bribe looks directly to Katerine."
     Albert "Because the moment you find The Ghost..."

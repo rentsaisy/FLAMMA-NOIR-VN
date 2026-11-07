@@ -19,7 +19,9 @@
 
 # #     return
 
-init python:
+default custom_voice = None
+
+init -1 python:
     renpy.music.register_channel(
         "template_voice",
         mixer="voice",
@@ -29,11 +31,15 @@ init python:
     def template_voice(event, interact=True, voicefile="audio/voice/male/mul_male.wav", **kwargs ):
         if not interact:
             return
+        is_custom = store.custom_voice is not None
         if event == "show":
-            renpy.music.play(voicefile, channel="template_voice", loop=True)
+            renpy.music.play(store.custom_voice or voicefile, channel="template_voice", loop=not is_custom)
         elif event in ("slow_done", "end"):
-            renpy.music.stop(channel="template_voice", fadeout=0.1)
+            if not is_custom:
+                renpy.music.stop(channel="template_voice", fadeout=0.1)
+            store.custom_voice = None
 
+#Character
 define narrator = Character(None, callback=template_voice, cb_voicefile="audio/voice/katerine/mul_katerine.wav")
 define Katerine = Character('Katerine', color="#ffffff", callback=template_voice, cb_voicefile="audio/voice/katerine/mul_katerine.wav")  #MC
 define Sonya = Character('Sonya', color="#80b9c8", callback=template_voice, cb_voicefile="audio/voice/sonya/mul_sonya.wav") #lead investigator
@@ -43,29 +49,27 @@ define Oscar = Character('Oscar', color="#900000", callback=template_voice, cb_v
 define Albert = Character('Albert', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") #the briber
 define Fox = Character('Little Fox', color="#ec7599", callback=template_voice, cb_voicefile="audio/voice/fox/pinkvoice.wav") #pink
 
+#Home BGM
+define config.main_menu_music = "audio/bgm/home-battle.wav"
+
 label tutorial_battle:
+    stop music fadeout 1.0
     jump tutorial
 
 label scene_1:
+    stop music fadeout 1.0
     jump firstscene
     
 label scene_2:
+    stop music fadeout 1.0
     jump secondscene
     
 label scene_3:
-    "The flames spread, consuming his house. The fire grows stronger, devouring everything in its path."
-    # "This is our newest member."
-    Sonya "This is our newest member."
-    Katerine "Hello, everyone. I’m the new lawyer."
-    Sonya "Alright. Let’s introduce ourselves. I’m the Lead Investigator, responsible for coordinating our investigations."
-    Ivan "I’m the Field Investigator. I handle investigations and evidence directly at the crime scene."
-    Alexei "I’m the Technical Investigator. I analyze technical evidence and help uncover hidden information."
-    "Suddenly, a new case comes in."
-    Sonya "Looks like this is your first case."
-    Katerine "Forest arson?"
-    return
+    stop music fadeout 1.0
+    jump thirdscene
 
 label scene_4:
+    stop music fadeout 1.0
     jump fourthscene
 
 
