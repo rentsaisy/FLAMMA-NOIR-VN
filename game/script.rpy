@@ -47,6 +47,7 @@ define Ivan = Character('Ivan', color="#247d7f", callback=template_voice, cb_voi
 define Alexei = Character('Alexei', color="#b2d9c4", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") # technical investigator
 define Oscar = Character('Oscar', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") # the burner
 define Albert = Character('Albert', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") #the briber
+define Franz = Character('Franz', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") #the ghost
 define Fox = Character('Little Fox', color="#ec7599", callback=template_voice, cb_voicefile="audio/voice/fox/pinkvoice.wav") #pink
 
 #Home BGM
@@ -76,32 +77,3 @@ label scene_4:
 
 label start:
     return
-
-label dialogBB:
-    Sonya "Exactly. Find the real culprit at the crime scene. You’ll be going with the Field Investigator."
-    Sonya "Tell me what you find when you’re done."
-    "The firefighters have already left. The forest is quiet, but the smell of smoke still lingers in the air."
-    Katerine "This forest is huge…"
-    "Katerine notices something lying among the ashes."
-    Katerine "A burned fox…"
-    Katerine "Who could do something this cruel?"
-    Ivan "Don't jump to conclusions. Look around first."
-    "They examine the area but finds nothing useful."
-    "CRACK!"
-    Katerine "Who’s there?!"
-    "A figure emerges from the smoke."
-    Oscar "You guys shouldn't have come here."
-    Katerine "Why are you running from us?"
-    Oscar "Who's gonna run, huh?"
-    Ivan "You're coming with us."
-    return
-
-label dialogAB:
-    "The smoke slowly clears and he is gone."
-    Ivan "He escaped..."
-    Katerine "Forget about him, he left something behind."
-    Ivan "Lighter?"
-    Katerine "Smell like gasoline.."
-    return
-
-    

@@ -1,13 +1,5 @@
-# SCENE 1
+# SCENE 2
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-# define Katerine = Character('Katerine', color="#ffffff")  #MC
-# define Sonya = Character('Sonya', color="#80b9c8") #lead investigator
-# define Ivan = Character('Ivan', color="#247d7f") # field investigator
-# define Alexei = Character('Alexei', color="#b2d9c4") # technical investigator
-# define Albert = Character('Albert', color="#900000") # the briber
-# define Fox = Character('Little Fox', color="#ec7599")  #PINK
 # Scenes pic
 image fox = "images/chara/C_Fox.png"
 image m_fox = "images/chara/C_Fox_Mute.png"

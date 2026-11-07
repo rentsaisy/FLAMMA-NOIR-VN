@@ -1,8 +1,5 @@
 # SCENE 1
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
 # Scenes pic
 image sonya = "images/chara/C_Lead_Investigator.png"
 image m_sonya = "images/chara/C_Lead_Investigator_Mute.png"
