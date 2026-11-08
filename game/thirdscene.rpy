@@ -23,6 +23,7 @@ image BGB = "images/BGB.png"
 image BGO = "images/BG_office.png"
 image S3_1 = "images/S3_1.png"
 image S3_2 = "images/S3_2.png"
+image S3_3 = "images/S3_3.png"
 
 image investigation_room3:
     "images/TG/tgidle.png"
@@ -1028,7 +1029,7 @@ label after_battle3:
     hide m_katerine
     hide m_alexei
     with dissolve
-    scene S3_2
+    scene S3_3
     Katerine "Silence! You just a fool and a tool for her."
     scene BGB
     show franz:

@@ -14,13 +14,18 @@ image m_alexei = "images/chara/C_Technical_Investigator_Mute.png"
 image agatha = "images/chara/V_The_mastermind.png"
 image m_agatha = "images/chara/V_The_mastermind_Mute.png"
 
-image eg1 = "images/Evi/em1.png"
-image eg2 = "images/Evi/em2.png"
-image eg3 = "images/Evi/em3.png"
+image em1 = "images/Evi/em1.png"
+image em2 = "images/Evi/em2.png"
+image em3 = "images/Evi/em3.png"
 
 image BGC = "images/BGC.png"
 image BGO = "images/BG_office.png"
 image S4_1 = "images/S4_1.png"
+image S4_21 = "images/S4_21.png"
+image S4_22 = "images/S4_22.png"
+image S4_23 = "images/S4_23.png"
+image S4_3 = "images/S4_3.png"
+image S4_4 = "images/S4_4.png"
 image SA = "images/SkyA.png"
 image SB = "images/SkyB.png"
 image END = "images/endsong.png"
@@ -104,6 +109,47 @@ screen ending_credits():
                 color "#FFFFFF"
                 xalign 0.5
 
+            text "CHARACTERS":
+                size 25
+                color "#bbf6f9"
+                xalign 0.5
+            text "Katerine Ivanovna":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Sonya Marmeladova":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Ivan Karamoz ":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Alexei Karamoz":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Oscar Wilde":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Albert Camus":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Franz Kafka":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Agatha Christie":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Little Fox Blushfen":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+                
             text "BACKGROUND DESIGN":
                 size 25
                 color "#bbf6f9"
@@ -135,24 +181,16 @@ screen ending_credits():
                 color "#FFFFFF"
                 xalign 0.5
                 
-            text "MALE VOICE OVER":
+            text "BACKGROUND SOUND":
                 size 25
                 color "#bbf6f9"
                 xalign 0.5
-            text "Adam Safinas":
-                size 22
-                color "#FFFFFF"
-                xalign 0.5
-            text "FEMALE VOICE OVER":
-                size 25
-                color "#bbf6f9"
-                xalign 0.5
-            text "Aisyah Currents":
+            text "Waiting To Wake Up by MARETU":
                 size 22
                 color "#FFFFFF"
                 xalign 0.5
 
-            text "SONG AND SINGER":
+            text "ENDING SONG AND SINGER":
                 size 25
                 color "#bbf6f9"
                 xalign 0.5
@@ -1103,19 +1141,24 @@ label after_battle4:
     Agatha "Tell me something."
     Agatha "Have you ever felt regret?"
     "The MC remains silent."
-    scene BGC
+    scene S4_21
     Katerine "I have never regretted what I have done."
     Katerine "Because everything I have done, I did with a clear conscience."
+    scene S4_22
     Katerine "I stood for truth."
+    scene S4_23
     Katerine "For justice."
     Katerine "For honesty."
     Katerine "And for humanity."
+    scene S4_21
     Katerine "So no.."
     Katerine "I have never regretted my choices."
+    scene S4_22
     Katerine "If the day comes when I must face death, I want to leave this world without regrets."
     Katerine "That is the art of dying well."
     Katerine "To live by what you believe in..."
     Katerine "And to die knowing you never betrayed it."
+    scene BGC
     show agatha:
         xalign 0.5
         yalign 0.3
@@ -1136,7 +1179,10 @@ label after_battle4:
     Katerine "Agatha said she will take full responsibility for what she have done."
     Fox "Yip Yip" #happy
     Katerine "After all FLAMMA project was to protect Blushfen, but she did it in very dumb way."
-    Katerine "Thank you for your help everyone.."
+    scene S4_3
+    Katerine "Thank you for your help"
+    scene S4_4
+    Katerine "everyone.."
     window hide
     scene SA
 
