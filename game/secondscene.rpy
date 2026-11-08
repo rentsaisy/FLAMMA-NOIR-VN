@@ -872,4 +872,6 @@ label after_battle2:
         yalign 0.1
         zoom 0.256 
     Sonya "Alright keep your mouth shut the briber. Enjoy your time with the police. Katerine, let`s back to the office for rest."
+    $ persistent.scene_2_complete = True
+    $ renpy.save_persistent()
     return

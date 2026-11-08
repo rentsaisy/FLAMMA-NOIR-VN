@@ -1,23 +1,19 @@
-﻿# default persistent.scene1_completed = False
-# default persistent.scene2_completed = False
-# default persistent.scene3_completed = False
-# default persistent.scene4_completed = False
+﻿init python:
 
-# label scene1:
+    def reset_scene_progress():
 
-#     # isi Scene 1 kamu di sini
+        persistent.scene_1_complete = False
+        persistent.scene_2_complete = False
+        persistent.scene_3_complete = False
+        persistent.scene_4_complete = False
 
-#     $ persistent.scene1_completed = True
+        renpy.save_persistent()
 
-#     return
+default persistent.scene_1_complete = False
+default persistent.scene_2_complete = False
+default persistent.scene_3_complete = False
+default persistent.scene_4_complete = False
 
-# label scene2:
-
-#     # isi Scene 2 kamu di sini
-
-#     $ persistent.scene2_completed = True
-
-# #     return
 
 default custom_voice = None
 
@@ -49,6 +45,7 @@ define Oscar = Character('Oscar', color="#900000", callback=template_voice, cb_v
 define Albert = Character('Albert', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") #the briber
 define Franz = Character('Franz', color="#900000", callback=template_voice, cb_voicefile="audio/voice/male/mul_male.wav") #the ghost
 define Fox = Character('Little Fox', color="#ec7599", callback=template_voice, cb_voicefile="audio/voice/fox/pinkvoice.wav") #pink
+define Agatha = Character('Agatha', color="#efdeef", callback=template_voice, cb_voicefile="audio/voice/mastermind/mul_mastermind.wav") 
 
 #Home BGM
 define config.main_menu_music = "audio/bgm/home-battle.wav"

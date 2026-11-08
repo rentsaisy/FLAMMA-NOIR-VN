@@ -1036,4 +1036,7 @@ label after_battle3:
         yalign 0.3
         zoom 0.232
     Franz "So you too.."
+    $ persistent.scene_3_complete = True
+    $ renpy.save_persistent()
+
     return

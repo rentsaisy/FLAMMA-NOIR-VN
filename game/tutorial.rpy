@@ -620,7 +620,7 @@ label tutorial:
     jump investigation_room_tutorial
     
 label investigation_room_tutorial:
-    
+    play music "audio/bgm/home-battle.wav" fadein 1.0
     call screen exploration_room_tutorial
     
     return

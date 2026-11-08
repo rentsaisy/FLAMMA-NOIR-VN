@@ -2,15 +2,18 @@
 transform gatescene_small:
     zoom 0.5
     
+
 screen scene_select():
     add "gui/F_end.png"
+
     vbox:
         xpos 200
         ypos 100
         spacing 40
+
         hbox:
             spacing 150
-            
+
             # SCENE 1
             vbox:
                 spacing 5
@@ -35,11 +38,18 @@ screen scene_select():
                     size 35
                     color "#000000"
 
-                imagebutton:
-                    idle "images/GateScene1.png"
-                    hover "images/GateScene1_hover.png"
-                    at gatescene_small
-                    action Start("scene_2")
+                if persistent.scene_1_complete:
+                    imagebutton:
+                        idle "images/GateScene2.png"
+                        hover "images/GateScene2_hover.png"
+                        at gatescene_small
+                        action Start("scene_2")
+                else:
+                    imagebutton:
+                        idle "images/GateScene2_lock.png"
+                        at gatescene_small
+                        action NullAction()
+
         hbox:
             spacing 150
 
@@ -52,11 +62,17 @@ screen scene_select():
                     size 35
                     color "#000000"
 
-                imagebutton:
-                    idle "images/GateScene1.png"
-                    hover "images/GateScene1_hover.png"
-                    at gatescene_small
-                    action Start("scene_3")
+                if persistent.scene_2_complete:
+                    imagebutton:
+                        idle "images/GateScene3.png"
+                        hover "images/GateScene3_hover.png"
+                        at gatescene_small
+                        action Start("scene_3")
+                else:
+                    imagebutton:
+                        idle "images/GateScene3_lock.png"
+                        at gatescene_small
+                        action NullAction()
 
             # SCENE 4
             vbox:
@@ -67,13 +83,29 @@ screen scene_select():
                     size 35
                     color "#000000"
 
-                imagebutton:
-                    idle "images/GateScene1.png"
-                    hover "images/GateScene1_hover.png"
-                    at gatescene_small
-                    action Start("scene_4")
+                if persistent.scene_3_complete:
+                    imagebutton:
+                        idle "images/GateScene4.png"
+                        hover "images/GateScene4_hover.png"
+                        at gatescene_small
+                        action Start("scene_4")
+                else:
+                    imagebutton:
+                        idle "images/GateScene4_lock.png"
+                        at gatescene_small
+                        action NullAction()
 
+    # RESET BUTTON
+    if persistent.scene_4_complete:
+        textbutton "RESET SCENES":
+            xalign 0.95
+            yalign 0.95
+            text_size 25
+            text_color "#bbf6f9"
+            action Function(reset_scene_progress)
     textbutton _("Return") style "return_button" action ShowMenu("_main_menu_screen")
+
+            
 ################################################################################
 ## Initialization
 ################################################################################

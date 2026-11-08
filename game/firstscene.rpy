@@ -650,21 +650,19 @@ screen exploration_room():
 
 label firstscene:
     scene BF
-    pause 2.0
     scene S1_1
-    pause 2.0
+    Fox "ZZZZZZ"
     scene S1_2
-    pause 1.5
+    Fox "????"
     scene S1_3
-    pause 2.0
+    Fox "AAAAAAA" #or whatever she is hurting?
     scene S1_4
     "The flames spread, consuming her house."
     scene S1_5
-    pause 1.5
+    Fox "AAAAAAA" #or whatever she is hurting?
     scene S1_6
     "The fire grows stronger, devouring everything in its path."
     scene black
-    pause 2.0
     scene BGO
     show sonya:
         xalign 0.5
@@ -966,4 +964,6 @@ label after_battle1:
     with dissolve
     scene black
     "They`re going back to NOIR office"
+    $ persistent.scene_1_complete = True
+    $ renpy.save_persistent()
     return
