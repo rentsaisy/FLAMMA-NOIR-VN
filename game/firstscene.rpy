@@ -652,17 +652,22 @@ label firstscene:
     scene BF
     pause 2.0
     scene S1_1
-    pause 2.0
+    play music "<loop 10.0>audio/bgm/wind-forest.wav"
+    Fox "ZZZZZZ"
     scene S1_2
-    pause 1.5
+    $ custom_voice = "audio/voice/fox/pinkvoice_confused.wav"
+    Fox "????"
     scene S1_3
-    pause 2.0
+    $ custom_voice = "audio/voice/fox/pinkvoice_scream2.wav"
+    Fox "AAAAAAA" #or whatever she is hurting?
     scene S1_4
     "The flames spread, consuming her house."
     scene S1_5
-    pause 1.5
+    $ custom_voice = "audio/voice/fox/pinkvoice_scream.wav"
+    Fox "AAAAAAA" #or whatever she is hurting?
     scene S1_6
     "The fire grows stronger, devouring everything in its path."
+    stop music
     scene black
     pause 2.0
     scene BGO
