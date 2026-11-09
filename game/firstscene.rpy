@@ -651,17 +651,22 @@ screen exploration_room():
 label firstscene:
     scene BF
     scene S1_1
+    play music "<loop 10.0>audio/bgm/wind-forest.wav"
     Fox "ZZZZZZ"
     scene S1_2
+    $ custom_voice = "audio/voice/fox/pinkvoice_confused.wav"
     Fox "????"
     scene S1_3
+    $ custom_voice = "audio/voice/fox/pinkvoice_scream2.wav"
     Fox "AAAAAAA" #or whatever she is hurting?
     scene S1_4
     "The flames spread, consuming her house."
     scene S1_5
+    $ custom_voice = "audio/voice/fox/pinkvoice_scream.wav"
     Fox "AAAAAAA" #or whatever she is hurting?
     scene S1_6
     "The fire grows stronger, devouring everything in its path."
+    stop music
     scene black
     scene BGO
     show sonya:

@@ -34,12 +34,16 @@ transform ending_zoom:
     zoom 3.0
     xalign 0.5
     yalign 1.0
-    linear 133.0 zoom 1.0
+    linear 127.0 zoom 1.0
     
+# transform credits_scroll:
+#     yoffset 750
+#     linear 127.0 yoffset -2000
+
 transform credits_scroll:
-    yoffset 750
-    linear 40.0 yoffset -2000
-    repeat
+    ypos 1.0
+    yanchor 0.0
+    linear 127.0 ypos 0.0 yanchor 1.0
     
 screen ending_lyrics(lyric):
     frame:
@@ -335,7 +339,7 @@ init python:
             "choices": [
                 ("It reveals a plan to establish a new conservation center for the Blushfen.", "integrity"),
                 ("It contains a list of wealthy collectors interested in purchasing rare Blushfen.", "intelligence"),
-                ("It is simply a proposal for expanding your uncle's existing conservation center.", "forensic")
+                ("It is simply a proposal for expanding your uncle`s existing conservation center.", "forensic")
             ]
         },
 
@@ -1074,6 +1078,7 @@ label fourthscene:
         yalign 0.1
         zoom 0.256
     "She touches the Blushfen."
+    $ custom_voice = "audio/voice/fox/pinkvoice_confused.wav"
     Fox "???" #confused
     hide fox
     show agatha:
@@ -1177,6 +1182,7 @@ label after_battle4:
     scene SA
     Ivan "Do you think the forest will recover?"
     Katerine "Agatha said she will take full responsibility for what she have done."
+    $ custom_voice = "audio/voice/fox/pinkvoice.wav"
     Fox "Yip Yip" #happy
     Katerine "After all FLAMMA project was to protect Blushfen, but she did it in very dumb way."
     scene S4_3
@@ -1202,30 +1208,30 @@ label after_battle4:
     hide text
 
     hide ending_overlay
-    play music "audio/ending.mp3"
+    play music "audio/ending.wav" noloop
     show END at ending_zoom
     with dissolve
     show screen ending_credits 
 
     show screen ending_lyrics("If there`s a prize for rotten judgment")
-    pause 5.0
+    pause 5.5
     show screen ending_lyrics("I guess the tycoons have won that")
     pause 5.0
     show screen ending_lyrics("No plot is worth the smog and burnin`")
-    pause 5.0
+    pause 4.5
     show screen ending_lyrics("That`s ancient timber, gone down in ash flat")
-    pause 4.0
+    pause 3.5
 
     show screen ending_lyrics("Who`d they think they`re trickin`?")
     pause 2.0
     show screen ending_lyrics("They just burned the earth and heaven")
     pause 2.0
     show screen ending_lyrics("Try to grease the docket")
-    pause 2.0
+    pause 1.8
     show screen ending_lyrics("Honey, we can see right through them")
-    pause 2.0
+    pause 1.8
     show screen ending_lyrics("They can`t just conceal it")
-    pause 2.0
+    pause 1.8
     show screen ending_lyrics("All the lungs can feel it")
     pause 2.0
     show screen ending_lyrics("Who they`re clearin` for")
@@ -1245,7 +1251,7 @@ label after_battle4:
     pause 5.0
 
     show screen ending_lyrics("I thought the courts had learned their lesson") 
-    pause 5.0
+    pause 4.0
     show screen ending_lyrics("It sounds so clean when they draft laws") 
     pause 4.0
     show screen ending_lyrics("My head is screaming, ``Seize the permits``")
@@ -1269,7 +1275,7 @@ label after_battle4:
     show screen ending_lyrics("Empty out their pocket")
     pause 2.0
     show screen ending_lyrics("Make `em pay, pay, pay the fines!")
-    pause 3.0
+    pause 4.0
 
     show screen ending_lyrics("No chance, no way")
     pause 2.0
@@ -1282,11 +1288,11 @@ label after_battle4:
     show screen ending_lyrics("Their plea won`t play")
     pause 2.0
     show screen ending_lyrics("I won`t call this bad luck")
-    pause 2.0
+    pause 1.8
     show screen ending_lyrics("They struck the match")
-    pause 2.0
+    pause 1.7
     show screen ending_lyrics("Read our lips, hold the line")
-    pause 2.0
+    pause 1.7
 
     show screen ending_lyrics("You`re way off base")
     pause 2.0
@@ -1307,8 +1313,11 @@ label after_battle4:
     pause 4.0
     show screen ending_lyrics("I won`t let them walk free")
     pause 7.0
+    hide screen ending_credits with dissolve
+    show screen ending_lyrics("") 
+    pause 8.0
+
     hide screen ending_lyrics
-    hide screen ending_credits
     stop music fadeout 3.0
     $ persistent.scene_4_complete = True
     $ renpy.save_persistent()
