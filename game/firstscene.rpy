@@ -650,7 +650,6 @@ screen exploration_room():
 
 label firstscene:
     scene BF
-    pause 2.0
     scene S1_1
     play music "<loop 10.0>audio/bgm/wind-forest.wav"
     Fox "ZZZZZZ"
@@ -669,7 +668,6 @@ label firstscene:
     "The fire grows stronger, devouring everything in its path."
     stop music
     scene black
-    pause 2.0
     scene BGO
     show sonya:
         xalign 0.5
@@ -971,4 +969,6 @@ label after_battle1:
     with dissolve
     scene black
     "They`re going back to NOIR office"
+    $ persistent.scene_1_complete = True
+    $ renpy.save_persistent()
     return

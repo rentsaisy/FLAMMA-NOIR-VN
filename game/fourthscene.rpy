@@ -1,3 +1,33 @@
+# SCENE 4
+
+# Scenes pic
+image fox = "images/chara/C_Fox.png"
+image m_fox = "images/chara/C_Fox_Mute.png"
+image sonya = "images/chara/C_Lead_Investigator.png"
+image m_sonya = "images/chara/C_Lead_Investigator_Mute.png"
+image katerine = "images/chara/C_Main_Character.png"
+image m_katerine = "images/chara/C_Main_Character_Mute.png"
+image ivan = "images/chara/C_Field_Investigator.png"
+image m_ivan = "images/chara/C_Field_Investigator_Mute.png"
+image alexei = "images/chara/C_Technical_Investigator.png"
+image m_alexei = "images/chara/C_Technical_Investigator_Mute.png"
+image agatha = "images/chara/V_The_mastermind.png"
+image m_agatha = "images/chara/V_The_mastermind_Mute.png"
+
+image em1 = "images/Evi/em1.png"
+image em2 = "images/Evi/em2.png"
+image em3 = "images/Evi/em3.png"
+
+image BGC = "images/BGC.png"
+image BGO = "images/BG_office.png"
+image S4_1 = "images/S4_1.png"
+image S4_21 = "images/S4_21.png"
+image S4_22 = "images/S4_22.png"
+image S4_23 = "images/S4_23.png"
+image S4_3 = "images/S4_3.png"
+image S4_4 = "images/S4_4.png"
+image SA = "images/SkyA.png"
+image SB = "images/SkyB.png"
 image END = "images/endsong.png"
 
 transform ending_zoom:
@@ -37,14 +67,7 @@ screen ending_credits():
         ysize 750
         background "#00000099"
         padding (20, 20)
-
-        # viewport:
-        #     xfill True
-        #     yfill True
-        #     scrollbars None
-        #     mousewheel False
-        #     draggable False
-
+        
         vbox:
             xalign 0.5
             spacing 35
@@ -90,6 +113,47 @@ screen ending_credits():
                 color "#FFFFFF"
                 xalign 0.5
 
+            text "CHARACTERS":
+                size 25
+                color "#bbf6f9"
+                xalign 0.5
+            text "Katerine Ivanovna":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Sonya Marmeladova":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Ivan Karamoz ":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Alexei Karamoz":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Oscar Wilde":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Albert Camus":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Franz Kafka":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Agatha Christie":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+            text "Little Fox Blushfen":
+                size 22
+                color "#FFFFFF"
+                xalign 0.5
+                
             text "BACKGROUND DESIGN":
                 size 25
                 color "#bbf6f9"
@@ -121,24 +185,16 @@ screen ending_credits():
                 color "#FFFFFF"
                 xalign 0.5
                 
-            text "MALE VOICE OVER":
+            text "BACKGROUND SOUND":
                 size 25
                 color "#bbf6f9"
                 xalign 0.5
-            text "Adam Safinas":
-                size 22
-                color "#FFFFFF"
-                xalign 0.5
-            text "FEMALE VOICE OVER":
-                size 25
-                color "#bbf6f9"
-                xalign 0.5
-            text "Aisyah Currents":
+            text "Waiting To Wake Up by MARETU":
                 size 22
                 color "#FFFFFF"
                 xalign 0.5
 
-            text "SONG AND SINGER":
+            text "ENDING SONG AND SINGER":
                 size 25
                 color "#bbf6f9"
                 xalign 0.5
@@ -725,6 +781,137 @@ screen exploration_room4():
                 text_size 28
                 action MainMenu(confirm=False)
                     
+    # ===== GAME WIN =====
+    if mastermind_state == "game_win":
+
+        add Solid("#000000")
+
+        vbox:
+            xalign 0.5
+            yalign 0.5
+            spacing 25
+
+            text "CONGRATULATION!":
+                size 65
+                color "#bbf6f9"
+                xalign 0.5
+                
+            text "INVESTIGATION COMPLETE":
+                size 65
+                color "#bbf6f9"
+                xalign 0.5
+
+            textbutton "CONTINUE":
+                xalign 0.5
+                text_size 28
+                action Jump("after_battle4")
+                
+    # Interaksi komputer
+    if not player_sitting4 and not evidence_open4:
+
+        if (player_x4 - COMPUTER_X4) ** 2 + (player_y4 - COMPUTER_Y4) ** 2 < INTERACTION_RADIUS4 ** 2:
+
+            textbutton "Inspect ( E )":
+                xpos 180
+                ypos 270
+                text_size 16
+                xpadding 8
+                ypadding 4
+                action SetVariable("evidence_open4", True)
+
+            key "e" action SetVariable("evidence_open4", True)
+
+    # Interaksi kursi
+    if not evidence_open4:
+
+        if (player_x4 - CHAIR_X4) ** 2 + (player_y4 - CHAIR_Y4) ** 2 < INTERACTION_RADIUS4 ** 2:
+
+            textbutton (" " if player_sitting4 else "Sit Down ( E )"):
+                xpos 850
+                ypos 300
+                text_size 16
+                xpadding 8
+                ypadding 4
+                action Function(toggle_sit4)
+
+            key "e" action Function(toggle_sit4)
+            
+    
+    if evidence_open4:
+
+        frame:
+            xalign 0.5
+            yalign 0.5
+            xsize 900
+            ysize 450
+            background "#18212df2"
+            padding [25, 20]
+
+            vbox:
+                spacing 15
+
+                text "INVESTIGATION EVIDENCES" size 25 color "#ffffff"
+
+                hbox:
+                    spacing 20
+
+                    # Evidence 1
+                    frame:
+                        xsize 270
+                        ysize 270
+                        background "#303d4d"
+                        padding [12, 12, 12, 12]
+
+                        vbox:
+                            spacing 10
+
+                            add "images/Evi/em1.png":
+                                xalign 0.5
+                                fit "contain"
+                                xysize (200, 200)
+
+                            text "1. Old News Paper" size 18
+
+                    # Evidence 2
+                    frame:
+                        xsize 270
+                        ysize 270
+                        background "#303d4d"
+                        padding [12, 12, 12, 12]
+
+                        vbox:
+                            spacing 10
+
+                            add "images/Evi/em2.png":
+                                xalign 0.5
+                                fit "contain"
+                                xysize (200, 200)
+
+                            text "2. A Project Flamma file" size 18
+
+                    # Evidence 3
+                    frame:
+                        xsize 270
+                        ysize 270
+                        background "#303d4d"
+                        padding [12, 12, 12, 12]
+
+                        vbox:
+                            spacing 10
+
+                            add "images/Evi/em3.png":
+                                xalign 0.5
+                                fit "contain"
+                                xysize (200, 200)
+
+                            text "3. A stuffed Blushfen" size 18
+
+                textbutton "Close":
+                    xalign 1.0
+                    action SetVariable("evidence_open4", False)
+
+    key "K_ESCAPE" action Return()
+               
 label fourthscene:
     scene BGO
     "The investigation team finally traces the source behind The Burner, The Bribe, and The Ghost."
@@ -1132,5 +1319,6 @@ label after_battle4:
 
     hide screen ending_lyrics
     stop music fadeout 3.0
-
+    $ persistent.scene_4_complete = True
+    $ renpy.save_persistent()
     return
